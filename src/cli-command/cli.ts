@@ -5,9 +5,9 @@ import { HelpCommand } from './help-command.js';
 import { VersionCommand } from './version-command.js';
 import { ImportCommand } from './import-command.js';
 
-const cli = new CliApplication();
+const cliApplication = new CliApplication();
 
-cli.registerCommands(
+cliApplication.registerCommands(
   [
     new HelpCommand,
     new VersionCommand,
@@ -15,4 +15,4 @@ cli.registerCommands(
   ]
 );
 
-cli.processCommand(process.argv);
+cliApplication.processCommand(process.argv);

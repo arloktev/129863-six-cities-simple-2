@@ -1,12 +1,12 @@
-import { CliCommandInterface, Commands } from '../cli-command/cli-command.interface.js';
+import { CliCommandInterface, CommandType } from '../cli-command/cli-command.interface.js';
 
 type ParsedCommand = {
   [key: string]: string[];
 }
 
 export class CliApplication {
-  private commands: {[commandName: string]: CliCommandInterface} = {};
-  private defaultCommand = Commands.Help;
+  private commands: { [commandName: string]: CliCommandInterface } = {};
+  private defaultCommand = CommandType.Help;
 
   private parseCommand(argv: string[]): ParsedCommand {
     let command = '';

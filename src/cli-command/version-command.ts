@@ -1,8 +1,13 @@
-import { CliCommandInterface, Commands } from './cli-command.interface.js';
+import chalk from 'chalk';
 import { readFileSync } from 'fs';
 
+import { CliCommandInterface, CommandType } from './cli-command.interface.js';
+
+/**
+ * Выводит информацию о версии приложения
+ */
 export class VersionCommand implements CliCommandInterface {
-  public readonly name = Commands.Version;
+  public readonly name: CommandType = CommandType.Version;
 
   private static readVersion(): string {
     const contentPackageJSON = readFileSync('./package.json', { encoding: 'utf8' });
@@ -14,6 +19,6 @@ export class VersionCommand implements CliCommandInterface {
   public execute() {
     const version = VersionCommand.readVersion();
 
-    console.log(version);
+    console.log(chalk.blue(version));
   }
 }

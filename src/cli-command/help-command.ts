@@ -1,18 +1,25 @@
-import { CliCommandInterface, Commands } from './cli-command.interface.js';
+import chalk from 'chalk';
 
+import { CliCommandInterface, CommandType } from './cli-command.interface.js';
+
+const HELP_TEXT = `
+  Программа для подготовки данных для REST API сервера.
+    Пример:
+      main.js --<command> [--arguments]
+    Команды:
+      ${CommandType.Version}:                   # выводит номер версии
+      ${CommandType.Help}:                      # печатает этот текст
+      ${CommandType.Import} <path>:             # импортирует данные из TSV
+      ${CommandType.Generate} <n> <path> <url>  # генерирует произвольное количество тестовых данных
+`;
+
+/**
+ * Выводит список и описание всех поддерживаемых аргументов
+ */
 export class HelpCommand implements CliCommandInterface {
-  public readonly name = Commands.Help;
+  public readonly name: CommandType = CommandType.Help;
 
   public execute(): void {
-    console.log(`
-      Программа для подготовки данных для REST API сервера.
-        Пример:
-            main.js --<command> [--arguments]
-        Команды:
-            --version:                   # выводит номер версии
-            --help:                      # печатает этот текст
-            --import <path>:             # импортирует данные из TSV
-            --generator <n> <path> <url> # генерирует произвольное количество тестовых данных
-    `);
+    console.log(chalk.blue(HELP_TEXT));
   }
 }
