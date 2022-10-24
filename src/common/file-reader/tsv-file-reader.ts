@@ -29,7 +29,7 @@ export class TSVFileReader implements FileReaderInterface {
       .map(([title, description, createdDate, city, preview, photos, isPremium, rating, type, numberRooms, numberGuests, price, convenience, author, countComments, position]) => ({
         title,
         description,
-        createdDate: new Date(createdDate),
+        createdDate,
         city: CityType[city as keyof typeof CityType],
         preview,
         photos: photos.split(';'),

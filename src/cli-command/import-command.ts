@@ -1,5 +1,6 @@
 import { CliCommandInterface, CommandType } from './cli-command.interface.js';
 import { TSVFileReader } from '../common/file-reader/tsv-file-reader.js';
+import chalk from 'chalk';
 
 /**
  * Импортирует в базу данных информацию из tsv-файла
@@ -13,8 +14,8 @@ export class ImportCommand implements CliCommandInterface {
     try {
       fileReader.read();
       console.log(fileReader.toArray());
-    } catch (e) {
-      console.log('error', e);
+    } catch (error) {
+      console.log(chalk.red((error as Error).message));
     }
   }
 }
